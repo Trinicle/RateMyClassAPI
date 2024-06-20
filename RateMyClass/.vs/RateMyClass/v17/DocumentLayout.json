@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\ratemyclass.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\ratemyclass.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "RateMyClass.API\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-20T23:31:14.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RateMyClass.API",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\RateMyClass.API.csproj",
+              "RelativeDocumentMoniker": "RateMyClass.API\\RateMyClass.API.csproj",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\RateMyClass.API.csproj",
+              "RelativeToolTip": "RateMyClass.API\\RateMyClass.API.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-20T23:28:45.942Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

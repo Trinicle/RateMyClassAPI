@@ -1,0 +1,6 @@
+@RateMyClass.API_HostAddress = http://localhost:5185
+
+GET {{RateMyClass.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
