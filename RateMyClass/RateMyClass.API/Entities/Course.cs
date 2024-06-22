@@ -3,13 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RateMyClass.API.Entities
 {
-    public class Class
+    public class Course
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(10)]
         public string Name { get; set; }
         public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
 
@@ -17,7 +18,7 @@ namespace RateMyClass.API.Entities
         public University? University { get; set; }
         public int UniversityId { get; set; }
 
-        public Class(string name) {
+        public Course(string name) {
             Name = name;
         }
     }

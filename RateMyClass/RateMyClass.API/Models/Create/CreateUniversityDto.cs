@@ -1,13 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RateMyClass.API.Entities
+namespace RateMyClass.API.Models.Create
 {
-    public class University
+    public class CreateUniversityDto
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         [Required]
         [MaxLength(50)]
         public string Name { get; set; } = string.Empty;
@@ -24,6 +20,5 @@ namespace RateMyClass.API.Entities
         [StringLength(10, MinimumLength = 5)]
         public string Zip { get; set; } = string.Empty;
         public string Website { get; set; } = "NOT AVAILABLE";
-        public ICollection<Course> Courses { get; set; } = new List<Course>();
     }
 }

@@ -17,7 +17,7 @@ namespace RateMyClass.API.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.6");
 
-            modelBuilder.Entity("RateMyClass.API.Entities.Class", b =>
+            modelBuilder.Entity("RateMyClass.API.Entities.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -25,6 +25,7 @@ namespace RateMyClass.API.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(10)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UniversityId")
@@ -34,7 +35,7 @@ namespace RateMyClass.API.Migrations
 
                     b.HasIndex("UniversityId");
 
-                    b.ToTable("Classes");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("RateMyClass.API.Entities.Rating", b =>
@@ -43,7 +44,7 @@ namespace RateMyClass.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ClassId")
+                    b.Property<int>("CrouseId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
@@ -65,7 +66,7 @@ namespace RateMyClass.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassId");
+                    b.HasIndex("CrouseId");
 
                     b.ToTable("Ratings");
                 });
@@ -78,18 +79,22 @@ namespace RateMyClass.API.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("City")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("State")
                         .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Website")
@@ -98,6 +103,7 @@ namespace RateMyClass.API.Migrations
 
                     b.Property<string>("Zip")
                         .IsRequired()
+                        .HasMaxLength(10)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -105,10 +111,10 @@ namespace RateMyClass.API.Migrations
                     b.ToTable("Universities");
                 });
 
-            modelBuilder.Entity("RateMyClass.API.Entities.Class", b =>
+            modelBuilder.Entity("RateMyClass.API.Entities.Course", b =>
                 {
                     b.HasOne("RateMyClass.API.Entities.University", "University")
-                        .WithMany("OfferedClasses")
+                        .WithMany("Courses")
                         .HasForeignKey("UniversityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -118,23 +124,23 @@ namespace RateMyClass.API.Migrations
 
             modelBuilder.Entity("RateMyClass.API.Entities.Rating", b =>
                 {
-                    b.HasOne("RateMyClass.API.Entities.Class", "Class")
+                    b.HasOne("RateMyClass.API.Entities.Course", "Course")
                         .WithMany("Ratings")
-                        .HasForeignKey("ClassId")
+                        .HasForeignKey("CrouseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Class");
+                    b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("RateMyClass.API.Entities.Class", b =>
+            modelBuilder.Entity("RateMyClass.API.Entities.Course", b =>
                 {
                     b.Navigation("Ratings");
                 });
 
             modelBuilder.Entity("RateMyClass.API.Entities.University", b =>
                 {
-                    b.Navigation("OfferedClasses");
+                    b.Navigation("Courses");
                 });
 #pragma warning restore 612, 618
         }

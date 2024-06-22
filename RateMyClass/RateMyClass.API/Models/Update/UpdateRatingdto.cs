@@ -1,14 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RateMyClass.API.Entities
+namespace RateMyClass.API.Models.Update
 {
-    public class Rating
+    public class UpdateRatingdto
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(200)]
         public string Description { get; set; } = string.Empty;
@@ -23,11 +18,5 @@ namespace RateMyClass.API.Entities
 
         [Required]
         public bool TakeAgain { get; set; }
-
-        public DateTime Date { get; set; }
-
-        [ForeignKey("CrouseId")]
-        public Course? Course { get; set; }
-        public int CrouseId { get; set; }
     }
 }

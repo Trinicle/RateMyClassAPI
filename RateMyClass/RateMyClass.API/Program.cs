@@ -1,10 +1,6 @@
-using CsvHelper;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using RateMyClass.API.DbContexts;
-using RateMyClass.API.Entities;
-using System.Formats.Asn1;
-using System.Globalization;
+using RateMyClass.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +16,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<UniversityInfoContext>(dbContextoptions
     => dbContextoptions.UseSqlite("Data Source=UniversityInfo.db"));
 
+builder.Services.AddScoped<IUniversityInfoRepository, UniversityInfoRepository>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,8 +31,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.Run();
