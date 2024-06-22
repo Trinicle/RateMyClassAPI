@@ -1,43 +1,61 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RateMyClass.API.DbContexts;
 using RateMyClass.API.Entities;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace RateMyClass.API.Services
 {
     public class UniversityInfoRepository : IUniversityInfoRepository
     {
         private readonly UniversityInfoContext _context;
+        private readonly IMapper _mapper;
 
-        public UniversityInfoRepository(UniversityInfoContext context)
+        public UniversityInfoRepository(UniversityInfoContext context, IMapper mapper)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task AddCourseForUniversity(int UniversityId, Course course)
+        public async Task<bool> AddCourseForUniversity(University university, Course course)
         {
-            var university = await UniversityExists(UniversityId);
-            if (university is not null)
+            university.Courses.Add(course);
+
+            await SaveChanges();
+
+            return true;
+        }
+
+        public async Task<bool> AddUniversity(University university)
+        {
+            await _context.Universities.AddAsync(university);
+
+            await SaveChanges();
+
+            var newUniversity = _mapper.Map<Models.Get.UniversityDto>(university);
+
+            if (newUniversity is not null)
             {
-                university.Courses.Add(course);
+                return true;
             }
+            return false;
         }
 
-        public void DeleteCourse(Course course)
+        public async Task<bool> DeleteUniversity(int id)
         {
-            throw new NotImplementedException();
-        }
+            var university = await UniversityExists(id);
 
-        public async Task<Course?> GetCourseForUniversity(int universityId, int courseId)
-        {
-            return await _context.Courses
-                .Where(c => c.UniversityId == universityId && c.Id == courseId)
-                .FirstOrDefaultAsync();
-        }
+            if (university is null)
+            {
+                return false;
+            }
 
-        public Task<IEnumerable<Course>> GetCoursesForUniversity(int universityId)
-        {
-            throw new NotImplementedException();
+            await _context.Universities
+                .Where(u => u.Id == id)
+                .ExecuteDeleteAsync();
+
+            return true;
         }
 
         public async Task<IEnumerable<University>> GetUniversitiesByName(string name, int amount)

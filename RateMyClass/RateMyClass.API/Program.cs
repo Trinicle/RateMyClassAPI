@@ -17,6 +17,7 @@ builder.Services.AddDbContext<UniversityInfoContext>(dbContextoptions
     => dbContextoptions.UseSqlite("Data Source=UniversityInfo.db"));
 
 builder.Services.AddScoped<IUniversityInfoRepository, UniversityInfoRepository>();
+builder.Services.AddScoped<ICourseInfoRepository, CourseInfoRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

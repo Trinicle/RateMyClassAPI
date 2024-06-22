@@ -6,6 +6,6 @@ namespace RateMyClass.API.Models.Create
     {
         [Required]
         [MaxLength(10)]
-        public string Name { get; set; } = string.Empty;
+        public string name { get; set; } = string.Empty;
     }
 }

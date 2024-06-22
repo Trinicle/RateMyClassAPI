@@ -7,6 +7,7 @@ namespace RateMyClass.API.Profiles
         public UniversityProfile() {
             CreateMap<Entities.University, Models.Get.UniversityWithoutCoursesDto>();
             CreateMap<Entities.University, Models.Get.UniversityDto>();
+            CreateMap<Models.Create.CreateUniversityDto, Entities.University>();
         }
     }
 }
