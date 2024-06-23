@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RateMyClass.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9bf2f6eb0aa5ce042ef3f4db6b6100e70070d9e7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f028104daf8a5d9cd564d26f202812de5d10b4a")]
 [assembly: System.Reflection.AssemblyProductAttribute("RateMyClass.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RateMyClass.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

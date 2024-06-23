@@ -1,5 +1,4 @@
 ﻿using RateMyClass.API.Entities;
-using System.Threading.Tasks;
 
 namespace RateMyClass.API.Services
 {
@@ -9,7 +8,7 @@ namespace RateMyClass.API.Services
         Task<Course?> GetCourseForUniversityById(int universityId, int courseId);
         Task<IEnumerable<Course>> GetCourseForUniversityByName(int universityId, string courseName, int amount);
         Task<bool> DeleteCourse(University university, int courseId);
-        Task<Course?> CourseExists(int courseId);
+        Task<bool> CourseExists(int courseId);
         Task<bool> SaveChanges();
     }
 }

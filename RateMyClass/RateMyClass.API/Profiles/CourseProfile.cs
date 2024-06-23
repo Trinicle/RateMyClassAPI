@@ -8,6 +8,7 @@ namespace RateMyClass.API.Profiles
         {
             CreateMap<Entities.Course, Models.Get.CourseDto>();
             CreateMap<Models.Create.CreateCourseDto, Entities.Course>();
+            CreateMap<Entities.Course, Models.Get.CourseWithoutRatingsDto>();
         }
     }
 }

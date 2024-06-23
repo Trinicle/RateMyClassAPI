@@ -19,6 +19,6 @@ namespace RateMyClass.API.Models.Get
             }
         }
 
-        public ICollection<Course> Courses { get; set; } = new List<Course>();
+        public ICollection<CourseWithoutRatingsDto> Courses { get; set; } = new List<CourseWithoutRatingsDto>();
     }
 }

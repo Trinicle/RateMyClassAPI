@@ -26,8 +26,8 @@ namespace RateMyClass.API.Entities
 
         public DateTime Date { get; set; }
 
-        [ForeignKey("CrouseId")]
+        [ForeignKey("CourseId")]
         public Course? Course { get; set; }
-        public int CrouseId { get; set; }
+        public int CourseId { get; set; }
     }
 }

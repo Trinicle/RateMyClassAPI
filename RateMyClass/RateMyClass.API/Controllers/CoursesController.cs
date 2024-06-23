@@ -29,10 +29,10 @@ namespace RateMyClass.API.Controllers
             _courseInfoRepository = courseInfoRepository;
         }
 
-        [HttpGet("search", Name = "GetCourses")]
+        [HttpGet(Name = "GetCourses")]
         public async Task<ActionResult<CourseDto>> GetCourseById(int universityId)
         {
-            if (await _universityInfoRepository.UniversityExists(universityId) is null)
+            if (!await _universityInfoRepository.UniversityExists(universityId))
             {
                 return NotFound();
             }
@@ -41,16 +41,15 @@ namespace RateMyClass.API.Controllers
             return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
         }
 
-        [HttpGet("searchId", Name = "GetCourseById")]
-        public async Task<ActionResult<CourseDto>> GetCourseById(
-            int universityId, 
-            [FromQuery] CourseIdRequest parameters)
+        [HttpGet("search/{id}", Name = "GetCourseById")]
+        public async Task<ActionResult<CourseDto>> GetCourseById(int universityId, int id,
+            [FromQuery] bool includeRatings)
         {
-            if (await _universityInfoRepository.UniversityExists(universityId) is null)
+            if (!await _universityInfoRepository.UniversityExists(universityId))
             {
                 return NotFound();
             }
-            var course = await _courseInfoRepository.GetCourseForUniversityById(universityId, parameters.id);
+            var course = await _courseInfoRepository.GetCourseForUniversityById(universityId, id);
 
             if (course is null)
             {
@@ -59,12 +58,10 @@ namespace RateMyClass.API.Controllers
             return Ok(_mapper.Map<CourseDto>(course));
         }
 
-        [HttpGet("searchName", Name = "GetCourseByName")]
-        public async Task<ActionResult<CourseDto>> GetCourseByName(
-            int universityId, 
-            [FromQuery] CourseNameRequest parameters)
+        [HttpGet("search", Name = "GetCourseByName")]
+        public async Task<ActionResult<CourseDto>> GetCourseByName(int universityId, [FromQuery] CourseNameRequest parameters)
         {
-            if (await _universityInfoRepository.UniversityExists(universityId) is null)
+            if (!await _universityInfoRepository.UniversityExists(universityId))
             {
                 return NotFound();
             }
@@ -78,12 +75,10 @@ namespace RateMyClass.API.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<CourseDto>> CreateCourse(
-            int universityId,
-            [FromQuery] CreateCourseDto course) 
+        public async Task<ActionResult<CourseDto>> CreateCourse(int universityId, [FromBody] CreateCourseDto course) 
         {
 
-            University? university = await _universityInfoRepository.UniversityExists(universityId);
+            University? university = await _universityInfoRepository.GetUniversityById(universityId, false);
 
             if (university is null)
             {
@@ -110,19 +105,17 @@ namespace RateMyClass.API.Controllers
                 createdCourse);
         }
         
-        [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteCourse(
-            int universityId,
-            [FromQuery] CourseIdRequest parameters)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteCourse(int universityId, int id)
         {
-            University? university = await _universityInfoRepository.UniversityExists(universityId);
+            University? university = await _universityInfoRepository.GetUniversityById(universityId, false);
 
             if (university is null)
             {
                 return NotFound();
             }
 
-            bool returnBool = await _courseInfoRepository.DeleteCourse(university, parameters.id);
+            bool returnBool = await _courseInfoRepository.DeleteCourse(university, id);
 
             if (!returnBool)
             {
@@ -131,17 +124,11 @@ namespace RateMyClass.API.Controllers
 
             return Ok();
         }
-
     }
-}
-public record CourseIdRequest
-{
-    [BindRequired]
-    public int id { get; init; }
 }
 public record CourseNameRequest
 {
     [BindRequired]
-    public string name { get; init; }
+    public string name { get; init; } = string.Empty;
     public int amount { get; init; } = 10;
 }

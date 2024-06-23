@@ -1,6 +1,4 @@
 ﻿using RateMyClass.API.Entities;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace RateMyClass.API.Models.Get
 {

@@ -4,7 +4,8 @@ namespace RateMyClass.API.Profiles
 {
     public class UniversityProfile : Profile
     {
-        public UniversityProfile() {
+        public UniversityProfile() 
+        {
             CreateMap<Entities.University, Models.Get.UniversityWithoutCoursesDto>();
             CreateMap<Entities.University, Models.Get.UniversityDto>();
             CreateMap<Models.Create.CreateUniversityDto, Entities.University>();

@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using RateMyClass.API.DbContexts;
 using RateMyClass.API.Entities;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace RateMyClass.API.Services
 {
@@ -46,7 +45,7 @@ namespace RateMyClass.API.Services
         {
             var university = await UniversityExists(id);
 
-            if (university is null)
+            if (!university)
             {
                 return false;
             }
@@ -70,16 +69,33 @@ namespace RateMyClass.API.Services
                 .ToListAsync();
         }
 
+        public async Task<University?> GetUniversityById(int id, bool includeCourses)
+        {
+            if (includeCourses)
+            {
+                return await _context.Universities
+                    .Include (c => c.Courses)
+                    .Where(u => u.Id == id)
+                    .FirstOrDefaultAsync();
+            }
+
+            return await _context.Universities
+                    .Where(u => u.Id == id)
+                    .FirstOrDefaultAsync();
+        }
+
         public async Task<bool> SaveChanges()
         {
             return (await _context.SaveChangesAsync() >= 0);
         }
 
-        public async Task<University?> UniversityExists(int universityId)
+        public async Task<bool> UniversityExists(int universityId)
         {
-            return await _context.Universities
-                .Where(u => u.Id == universityId)
-                .FirstOrDefaultAsync();
+            var university = await _context.Universities
+                                .Where(u => u.Id == universityId)
+                                .FirstOrDefaultAsync();
+
+            return university is not null ? true : false;
         }
     }
 }

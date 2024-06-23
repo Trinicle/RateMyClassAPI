@@ -7,7 +7,6 @@ namespace RateMyClass.API.Services
 {
     public class CourseInfoRepository : ICourseInfoRepository
     {
-
         private readonly UniversityInfoContext _context;
 
         public CourseInfoRepository(UniversityInfoContext context)
@@ -15,16 +14,25 @@ namespace RateMyClass.API.Services
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<Course?> CourseExists(int courseId)
+        public async Task<bool> CourseExists(int courseId)
         {
-            return await _context.Courses
-                .Where(c => c.Id == courseId)
-                .FirstOrDefaultAsync();
+            var course = await _context.Courses
+                            .Where(c => c.Id == courseId)
+                            .FirstOrDefaultAsync();
+
+            return course is not null ? true : false;
         }
 
         public async Task<bool> DeleteCourse(University university, int courseId)
         {
-            var course = await CourseExists(courseId);
+            var courseExists = await CourseExists(courseId);
+
+            if (!courseExists)
+            {
+                return false;
+            }
+
+            var course = await GetCourseForUniversityById(university.Id, courseId);
 
             if (course is null)
             {

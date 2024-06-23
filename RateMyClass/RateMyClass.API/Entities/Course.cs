@@ -11,15 +11,11 @@ namespace RateMyClass.API.Entities
 
         [Required]
         [MaxLength(10)]
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
         public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
 
         [ForeignKey("UniversityId")]
         public University? University { get; set; }
         public int UniversityId { get; set; }
-
-        public Course(string name) {
-            Name = name;
-        }
     }
 }
