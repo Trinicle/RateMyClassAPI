@@ -4,6 +4,7 @@ namespace RateMyClass.API.Services
 {
     public interface IUniversityInfoRepository
     {
+        Task<IEnumerable<University>> GetUniversities(int amount);
         Task<IEnumerable<University>> GetUniversitiesByName(string name, int amount);
         Task<University?> GetUniversityById(int id, bool includeCourses);
         Task<bool> UniversityExists(int universityId);

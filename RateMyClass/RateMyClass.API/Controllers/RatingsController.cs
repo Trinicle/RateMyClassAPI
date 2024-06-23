@@ -10,14 +10,17 @@ namespace RateMyClass.API.Controllers
     public class RatingsController : ControllerBase
     {
         private readonly ICourseInfoRepository _courseInfoRepository;
+        private readonly IRatingInfoRepository _ratingInfoRepository;
         private readonly IMapper _mapper;
 
-        public RatingsController(ICourseInfoRepository courseInfoRepository, IMapper mapper)
+        public RatingsController(ICourseInfoRepository courseInfoRepository, IRatingInfoRepository ratingInfoRepository, IMapper mapper)
         {
-            _courseInfoRepository = courseInfoRepository;
-            _mapper = mapper;
+            _courseInfoRepository = courseInfoRepository ?? 
+                throw new ArgumentException(nameof(courseInfoRepository));
+            _ratingInfoRepository = ratingInfoRepository ??
+                throw new AbandonedMutexException(nameof(ratingInfoRepository));
+            _mapper = mapper ??
+                throw new ArgumentNullException(nameof(mapper));
         }
-
-        
     }
 }

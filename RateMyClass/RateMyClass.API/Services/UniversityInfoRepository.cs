@@ -57,6 +57,13 @@ namespace RateMyClass.API.Services
             return true;
         }
 
+        public async Task<IEnumerable<University>> GetUniversities(int amount)
+        {
+            return await _context.Universities
+               .Take(amount)
+               .ToListAsync();
+        }
+
         public async Task<IEnumerable<University>> GetUniversitiesByName(string name, int amount)
         {
             string pattern = @"[%_\[\]^\\]";

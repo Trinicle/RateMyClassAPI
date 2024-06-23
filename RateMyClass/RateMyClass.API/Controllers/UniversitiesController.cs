@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RateMyClass.API.Entities;
 using RateMyClass.API.Models.Create;
 using RateMyClass.API.Models.Get;
+using RateMyClass.API.Models.Update;
 using RateMyClass.API.Services;
 
 namespace RateMyClass.API.Controllers
@@ -23,32 +24,43 @@ namespace RateMyClass.API.Controllers
                 throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet("search", Name = "GetUniversityByName")]
-        public async Task<IActionResult> GetUniversitiesByName([FromQuery] UniversityNameGetRequest parameters)
+        [HttpGet(Name = "GetUniversities")]
+        public async Task<IActionResult> GetUniversitiesByName(
+            [FromQuery] string? name,
+            [FromQuery] int amount = 10)
         {
-            if(parameters.amount < 1)
+            if(amount < 1)
             {
                 return BadRequest();
             }
 
-            var universities = await _universityInfoRepository.GetUniversitiesByName(parameters.name, parameters.amount);
+            if (name is null)
+            {
+                IEnumerable<University> universities = await _universityInfoRepository.GetUniversities(amount);
 
-            if (!universities.Any())
+                return Ok(_mapper.Map<IEnumerable<University>>(universities));
+            }
+
+            IEnumerable<University> universitiesByName = await _universityInfoRepository.GetUniversitiesByName(name, amount);
+
+
+            if (!universitiesByName.Any())
             {
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<IEnumerable<UniversityWithoutCoursesDto>>(universities));
+            return Ok(_mapper.Map<IEnumerable<UniversityWithoutCoursesDto>>(universitiesByName));
         }
 
-        [HttpGet("search/{id}", Name = "GetUniversityById")]
+        [HttpGet("{id}", Name = "GetUniversityById")]
         public async Task<IActionResult> GetUniversityById([FromQuery] bool includeCourses, int id)
         {
             if (id < 1)
             {
                 return BadRequest();
             }
-            var university = await _universityInfoRepository.GetUniversityById(id, includeCourses);
+
+            University? university = await _universityInfoRepository.GetUniversityById(id, includeCourses);
 
             if (university is null)
             {
@@ -63,17 +75,17 @@ namespace RateMyClass.API.Controllers
             return Ok(_mapper.Map<UniversityWithoutCoursesDto>(university));
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<ActionResult<UniversityDto>> CreateUniversity([FromBody] CreateUniversityDto bodyUniversity)
         {
-            var newUniversity = _mapper.Map<Entities.University>(bodyUniversity);
+            University newUniversity = _mapper.Map<Entities.University>(bodyUniversity);
 
             if (!await _universityInfoRepository.AddUniversity(newUniversity))
             {
                 return BadRequest();
             }
 
-            var createdUniversity = _mapper.Map<Models.Get.UniversityDto>(newUniversity);
+            UniversityDto createdUniversity = _mapper.Map<Models.Get.UniversityDto>(newUniversity);
 
             return CreatedAtRoute("GetUniversityById",
                 new
@@ -84,7 +96,7 @@ namespace RateMyClass.API.Controllers
                 createdUniversity);
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUniversity(int id)
         {
             if (id < 1)
@@ -97,16 +109,66 @@ namespace RateMyClass.API.Controllers
                 return NotFound();
             }
 
-            await _universityInfoRepository.DeleteUniversity(id);
+            if (!await _universityInfoRepository.DeleteUniversity(id))
+            {
+                return BadRequest();
+            }
 
             return Ok();
         }
-    }
-}
 
-public record UniversityNameGetRequest
-{
-    [BindRequired]
-    public string name { get; init; } = string.Empty;
-    public int amount { get; init; } = 10;
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UniversityDto>> PutUniversity(int id, [FromBody] UpdateUniversityDto university)
+        {
+            if (id < 1)
+            {
+                return BadRequest();
+            }
+
+            University? currentUniversity = await _universityInfoRepository.GetUniversityById(id, false);
+
+            if (currentUniversity is null)
+            {
+                return NotFound(); 
+            }
+
+            _mapper.Map(university, currentUniversity);
+
+            await _universityInfoRepository.SaveChanges();
+
+            return Ok(_mapper.Map<UniversityWithoutCoursesDto>(currentUniversity));
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<UniversityDto>> PatchUniversity(int id, [FromBody] JsonPatchDocument<UpdateUniversityDto> patchdoc)
+        {
+            if (id < 1)
+            {
+                return BadRequest();
+            }
+
+            var currentUniversity = await _universityInfoRepository.GetUniversityById(id, false);
+
+            if (currentUniversity is null)
+            {
+                return NotFound();
+            }
+
+            var universityUpdate = _mapper.Map<UpdateUniversityDto>(currentUniversity);
+            patchdoc.ApplyTo(universityUpdate);
+
+            TryValidateModel(universityUpdate);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            _mapper.Map(universityUpdate, currentUniversity);
+
+            await _universityInfoRepository.SaveChanges();
+
+            return Ok(_mapper.Map<UniversityDto>(currentUniversity));
+        }
+    }
 }

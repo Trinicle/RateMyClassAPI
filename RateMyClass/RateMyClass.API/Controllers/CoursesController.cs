@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using RateMyClass.API.Entities;
@@ -30,53 +29,63 @@ namespace RateMyClass.API.Controllers
         }
 
         [HttpGet(Name = "GetCourses")]
-        public async Task<ActionResult<CourseDto>> GetCourseById(int universityId)
+        public async Task<ActionResult<CourseDto>> GetCourseById(int universityId,
+            [FromQuery] string? name,
+            [FromQuery] int amount = 10)
         {
+            if (universityId < 1 || amount < 1)
+            {
+                return BadRequest();
+            }
+
             if (!await _universityInfoRepository.UniversityExists(universityId))
             {
                 return NotFound();
             }
-            var courses = await _courseInfoRepository.GetCoursesForUniversity(universityId);
 
-            return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
+            if (name is null)
+            {
+               IEnumerable<Course> courses = await _courseInfoRepository.GetCoursesForUniversity(universityId, amount);
+
+                return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
+            }
+
+            IEnumerable<Course> coursesByName = await _courseInfoRepository.GetCourseForUniversityByName(universityId, name, amount);
+
+            return Ok(_mapper.Map<IEnumerable<CourseDto>>(coursesByName));
         }
 
-        [HttpGet("search/{id}", Name = "GetCourseById")]
-        public async Task<ActionResult<CourseDto>> GetCourseById(int universityId, int id,
-            [FromQuery] bool includeRatings)
+        [HttpGet("{courseId}", Name = "GetCourseById")]
+        public async Task<ActionResult<CourseDto>> GetCourseById(int universityId, int courseId,
+            [FromQuery] bool includeRatings = false)
         {
+            if (courseId < 1 || universityId < 1)
+            {
+                return BadRequest();
+            }
+
             if (!await _universityInfoRepository.UniversityExists(universityId))
             {
                 return NotFound();
             }
-            var course = await _courseInfoRepository.GetCourseForUniversityById(universityId, id);
+
+            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId);
 
             if (course is null)
             {
                 return NotFound();
             }
+
             return Ok(_mapper.Map<CourseDto>(course));
-        }
-
-        [HttpGet("search", Name = "GetCourseByName")]
-        public async Task<ActionResult<CourseDto>> GetCourseByName(int universityId, [FromQuery] CourseNameRequest parameters)
-        {
-            if (!await _universityInfoRepository.UniversityExists(universityId))
-            {
-                return NotFound();
-            }
-            var course = await _courseInfoRepository.GetCourseForUniversityByName(universityId, parameters.name, parameters.amount);
-
-            if (course is null)
-            {
-                return NotFound();
-            }
-            return Ok(_mapper.Map<IEnumerable<CourseDto>>(course));
         }
 
         [HttpPost("create")]
         public async Task<ActionResult<CourseDto>> CreateCourse(int universityId, [FromBody] CreateCourseDto course) 
         {
+            if (universityId < 1)
+            {
+                return BadRequest();
+            }
 
             University? university = await _universityInfoRepository.GetUniversityById(universityId, false);
 
@@ -85,7 +94,7 @@ namespace RateMyClass.API.Controllers
                 return NotFound();
             }
 
-            var finalCourse = _mapper.Map<Entities.Course>(course);
+            Course finalCourse = _mapper.Map<Entities.Course>(course);
 
             bool returnBool = await _universityInfoRepository.AddCourseForUniversity(university, finalCourse);
 
@@ -108,6 +117,11 @@ namespace RateMyClass.API.Controllers
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteCourse(int universityId, int id)
         {
+            if (universityId < 1)
+            {
+                return BadRequest();
+            }
+
             University? university = await _universityInfoRepository.GetUniversityById(universityId, false);
 
             if (university is null)

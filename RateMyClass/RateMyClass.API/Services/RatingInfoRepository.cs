@@ -49,14 +49,16 @@ namespace RateMyClass.API.Services
 
         public async Task<IEnumerable<Rating>> GetRatingsForCourse(int courseId)
         {
-            throw new NotImplementedException();
+            return await _context.Ratings
+                .Where(r => r.CourseId == courseId)
+                .ToListAsync();
         }
 
         public async Task<bool> RatingExists(int ratingId)
         {
             var course = await _context.Ratings
-                            .Where (r => r.Id == ratingId)
-                            .FirstOrDefaultAsync();
+                .Where (r => r.Id == ratingId)
+                .FirstOrDefaultAsync();
 
             return course is not null ? true : false;
         }

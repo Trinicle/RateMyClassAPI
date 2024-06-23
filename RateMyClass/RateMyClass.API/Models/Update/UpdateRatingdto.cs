@@ -4,19 +4,15 @@ namespace RateMyClass.API.Models.Update
 {
     public class UpdateRatingdto
     {
-        [Required]
         [MaxLength(200)]
         public string Description { get; set; } = string.Empty;
 
-        [Required]
         [Range(1, 5)]
-        public int Quality { get; set; }
+        public int Quality { get; set; } = 1;
 
-        [Required]
         [Range(1, 5)]
-        public int Difficulty { get; set; }
+        public int Difficulty { get; set; } = 1;
 
-        [Required]
-        public bool TakeAgain { get; set; }
+        public bool TakeAgain { get; set; } = false;
     }
 }

@@ -69,10 +69,11 @@ namespace RateMyClass.API.Services
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<Course>> GetCoursesForUniversity(int universityId)
+        public async Task<IEnumerable<Course>> GetCoursesForUniversity(int universityId, int amount)
         {
             return await _context.Courses
                 .Where(c => c.UniversityId == universityId)
+                .Take(amount)
                 .ToListAsync();
         }
         public async Task<bool> SaveChanges()
