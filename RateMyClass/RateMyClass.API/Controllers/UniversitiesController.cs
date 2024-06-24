@@ -76,16 +76,16 @@ namespace RateMyClass.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<UniversityDto>> CreateUniversity([FromBody] CreateUniversityDto bodyUniversity)
+        public async Task<IActionResult> CreateUniversity([FromBody] CreateUniversityDto bodyUniversity)
         {
-            University newUniversity = _mapper.Map<Entities.University>(bodyUniversity);
+            University newUniversity = _mapper.Map<University>(bodyUniversity);
 
             if (!await _universityInfoRepository.AddUniversity(newUniversity))
             {
                 return BadRequest();
             }
 
-            UniversityDto createdUniversity = _mapper.Map<Models.Get.UniversityDto>(newUniversity);
+            UniversityDto createdUniversity = _mapper.Map<UniversityDto>(newUniversity);
 
             return CreatedAtRoute("GetUniversityById",
                 new
@@ -118,7 +118,7 @@ namespace RateMyClass.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<UniversityDto>> PutUniversity(int id, [FromBody] UpdateUniversityDto university)
+        public async Task<IActionResult> PutUniversity(int id, [FromBody] UpdateUniversityDto university)
         {
             if (id < 1)
             {
@@ -136,11 +136,11 @@ namespace RateMyClass.API.Controllers
 
             await _universityInfoRepository.SaveChanges();
 
-            return Ok(_mapper.Map<UniversityWithoutCoursesDto>(currentUniversity));
+            return Ok(_mapper.Map<UniversityDto>(currentUniversity));
         }
 
         [HttpPatch("{id}")]
-        public async Task<ActionResult<UniversityDto>> PatchUniversity(int id, [FromBody] JsonPatchDocument<UpdateUniversityDto> patchdoc)
+        public async Task<IActionResult> PatchUniversity(int id, [FromBody] JsonPatchDocument<UpdateUniversityDto> patchdoc)
         {
             if (id < 1)
             {

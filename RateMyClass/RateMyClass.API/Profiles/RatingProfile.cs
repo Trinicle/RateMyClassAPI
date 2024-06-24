@@ -6,7 +6,11 @@ namespace RateMyClass.API.Profiles
     {
         public RatingProfile() 
         {
-            
+            CreateMap<Entities.Rating, Models.Get.RatingDto>();
+            CreateMap<Models.Create.CreateRatingDto, Entities.Rating>();
+            CreateMap<Entities.Rating, Models.Update.UpdateRatingdto>();
+            CreateMap<Models.Update.UpdateRatingdto, Entities.Rating>();
+            CreateMap<Entities.Rating, Models.Update.UpdateCourseDto>();
         }
     }
 }

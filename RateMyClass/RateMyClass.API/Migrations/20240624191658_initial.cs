@@ -60,14 +60,14 @@ namespace RateMyClass.API.Migrations
                     Difficulty = table.Column<int>(type: "INTEGER", nullable: false),
                     TakeAgain = table.Column<bool>(type: "INTEGER", nullable: false),
                     Date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CrouseId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CourseId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ratings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ratings_Courses_CrouseId",
-                        column: x => x.CrouseId,
+                        name: "FK_Ratings_Courses_CourseId",
+                        column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -79,9 +79,9 @@ namespace RateMyClass.API.Migrations
                 column: "UniversityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ratings_CrouseId",
+                name: "IX_Ratings_CourseId",
                 table: "Ratings",
-                column: "CrouseId");
+                column: "CourseId");
         }
 
         /// <inheritdoc />

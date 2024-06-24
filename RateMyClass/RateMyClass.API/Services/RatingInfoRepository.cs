@@ -12,16 +12,17 @@ namespace RateMyClass.API.Services
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+        public async Task<bool> AddRatingForCourse(Course course, Rating rating)
+        {
+            course.Ratings.Add(rating);
+
+            await SaveChanges();
+
+            return await RatingExists(rating.Id);
+        }
 
         public async Task<bool> DeleteRating(Course course, int ratingId)
         {
-            var ratingExists = await RatingExists(ratingId);
-
-            if (!ratingExists)
-            {
-                return false;
-            }
-
             var rating = await GetRatingForCourseById(course.Id, ratingId);
 
             if (rating is null)
@@ -31,13 +32,9 @@ namespace RateMyClass.API.Services
 
             course.Ratings.Remove(rating);
 
-            await _context.Courses
-                .Where(r => r.Id == ratingId)
-                .ExecuteDeleteAsync();
-
             await SaveChanges();
 
-            return true;
+            return !await RatingExists(ratingId);
         }
 
         public async Task<Rating?> GetRatingForCourseById(int courseId, int ratingId)

@@ -4,6 +4,7 @@ namespace RateMyClass.API.Services
 {
     public interface IRatingInfoRepository
     {
+        Task<bool> AddRatingForCourse(Course course, Rating rating);
         Task<IEnumerable<Rating>> GetRatingsForCourse(int courseId);
         Task<Rating?> GetRatingForCourseById(int courseId, int ratingId);
         Task<bool> DeleteRating(Course course, int ratingId);

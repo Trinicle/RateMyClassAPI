@@ -14,6 +14,15 @@ namespace RateMyClass.API.Services
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
+        public async Task<bool> AddCourseForUniversity(University university, Course course)
+        {
+            university.Courses.Add(course);
+
+            await SaveChanges();
+
+            return await CourseExists(course.Id);
+        }
+
         public async Task<bool> CourseExists(int courseId)
         {
             var course = await _context.Courses
@@ -25,13 +34,6 @@ namespace RateMyClass.API.Services
 
         public async Task<bool> DeleteCourse(University university, int courseId)
         {
-            var courseExists = await CourseExists(courseId);
-
-            if (!courseExists)
-            {
-                return false;
-            }
-
             var course = await GetCourseForUniversityById(university.Id, courseId);
 
             if (course is null)
@@ -39,15 +41,11 @@ namespace RateMyClass.API.Services
                 return false;
             }
 
-            university.Courses.Remove(course);
-
-            await _context.Universities
-                .Where(c => c.Id == courseId)
-                .ExecuteDeleteAsync();
+            university.Courses.Remove(course);;
 
             await SaveChanges();
 
-            return true;
+            return !await CourseExists(courseId);
         }
 
         public async Task<Course?> GetCourseForUniversityById(int universityId, int courseId)

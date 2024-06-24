@@ -44,7 +44,7 @@ namespace RateMyClass.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CrouseId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
@@ -66,7 +66,7 @@ namespace RateMyClass.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CrouseId");
+                    b.HasIndex("CourseId");
 
                     b.ToTable("Ratings");
                 });
@@ -126,7 +126,7 @@ namespace RateMyClass.API.Migrations
                 {
                     b.HasOne("RateMyClass.API.Entities.Course", "Course")
                         .WithMany("Ratings")
-                        .HasForeignKey("CrouseId")
+                        .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

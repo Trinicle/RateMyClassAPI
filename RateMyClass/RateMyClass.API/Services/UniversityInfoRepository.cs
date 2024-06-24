@@ -9,21 +9,10 @@ namespace RateMyClass.API.Services
     public class UniversityInfoRepository : IUniversityInfoRepository
     {
         private readonly UniversityInfoContext _context;
-        private readonly IMapper _mapper;
 
-        public UniversityInfoRepository(UniversityInfoContext context, IMapper mapper)
+        public UniversityInfoRepository(UniversityInfoContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
-            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
-        }
-
-        public async Task<bool> AddCourseForUniversity(University university, Course course)
-        {
-            university.Courses.Add(course);
-
-            await SaveChanges();
-
-            return true;
         }
 
         public async Task<bool> AddUniversity(University university)
@@ -32,29 +21,23 @@ namespace RateMyClass.API.Services
 
             await SaveChanges();
 
-            var newUniversity = _mapper.Map<Models.Get.UniversityDto>(university);
-
-            if (newUniversity is not null)
-            {
-                return true;
-            }
-            return false;
+            return await UniversityExists(university.Id);
         }
 
         public async Task<bool> DeleteUniversity(int id)
         {
-            var university = await UniversityExists(id);
+            var university = await GetUniversityById(id, false);
 
-            if (!university)
+            if (university is null)
             {
                 return false;
             }
 
-            await _context.Universities
-                .Where(u => u.Id == id)
-                .ExecuteDeleteAsync();
+            _context.Universities.Remove(university);
 
-            return true;
+            await SaveChanges();
+
+            return !await UniversityExists(id);
         }
 
         public async Task<IEnumerable<University>> GetUniversities(int amount)

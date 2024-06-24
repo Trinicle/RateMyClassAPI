@@ -21,6 +21,7 @@ builder.Services.AddDbContext<UniversityInfoContext>(dbContextoptions
 
 builder.Services.AddScoped<IUniversityInfoRepository, UniversityInfoRepository>();
 builder.Services.AddScoped<ICourseInfoRepository, CourseInfoRepository>();
+builder.Services.AddScoped<IRatingInfoRepository, RatingInfoRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
