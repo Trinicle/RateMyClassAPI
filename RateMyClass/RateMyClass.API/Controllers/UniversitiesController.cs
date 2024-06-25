@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using RateMyClass.API.Entities;
 using RateMyClass.API.Models.Create;
 using RateMyClass.API.Models.Get;
+using RateMyClass.API.Models.Response;
 using RateMyClass.API.Models.Update;
 using RateMyClass.API.Services;
 
@@ -38,7 +39,13 @@ namespace RateMyClass.API.Controllers
             {
                 IEnumerable<University> universities = await _universityInfoRepository.GetUniversities(amount);
 
-                return Ok(_mapper.Map<IEnumerable<University>>(universities));
+                var noNameResponse = new GetMultipleResponse<University>
+                {
+                    count = universities.Count(),
+                    result = _mapper.Map<IEnumerable<University>>(universities)
+                };
+
+                return Ok(noNameResponse);
             }
 
             IEnumerable<University> universitiesByName = await _universityInfoRepository.GetUniversitiesByName(name, amount);
@@ -49,7 +56,13 @@ namespace RateMyClass.API.Controllers
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<IEnumerable<UniversityWithoutCoursesDto>>(universitiesByName));
+            var response = new GetMultipleResponse<UniversityWithoutCoursesDto>
+            {
+                count = universitiesByName.Count(),
+                result = _mapper.Map<IEnumerable<UniversityWithoutCoursesDto>>(universitiesByName)
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("{id}", Name = "GetUniversityById")]
@@ -69,10 +82,18 @@ namespace RateMyClass.API.Controllers
 
             if (includeCourses)
             {
-                return Ok(_mapper.Map<UniversityDto>(university));
+                var includeCoursesResponse = new GetSingleResponse<UniversityDto>
+                {
+                    result = _mapper.Map<UniversityDto>(university)
+                };
+                return Ok(includeCoursesResponse);
             }
 
-            return Ok(_mapper.Map<UniversityWithoutCoursesDto>(university));
+            var excludeCoursesResponse = new GetSingleResponse<UniversityWithoutCoursesDto>
+            {
+                result = _mapper.Map<UniversityWithoutCoursesDto>(university)
+            };
+            return Ok(excludeCoursesResponse);
         }
 
         [HttpPost]
