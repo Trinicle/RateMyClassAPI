@@ -6,7 +6,7 @@ namespace RateMyClass.API.Services
     {
         Task<IEnumerable<University>> GetUniversities(int amount);
         Task<IEnumerable<University>> GetUniversitiesByName(string name, int amount);
-        Task<University?> GetUniversityById(int id, bool includeCourses);
+        Task<University?> GetUniversityById(int id, bool includeLists);
         Task<bool> UniversityExists(int universityId);
         Task<bool> AddUniversity(University university);
         Task<bool> DeleteUniversity(int id);

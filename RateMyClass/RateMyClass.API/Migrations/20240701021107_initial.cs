@@ -50,12 +50,43 @@ namespace RateMyClass.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ratings",
+                name: "UniversityRatings",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Description = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
+                    Quality = table.Column<int>(type: "INTEGER", nullable: false),
+                    Location = table.Column<int>(type: "INTEGER", nullable: false),
+                    Opportunities = table.Column<int>(type: "INTEGER", nullable: false),
+                    Facilities = table.Column<int>(type: "INTEGER", nullable: false),
+                    Internet = table.Column<int>(type: "INTEGER", nullable: false),
+                    Food = table.Column<int>(type: "INTEGER", nullable: false),
+                    Clubs = table.Column<int>(type: "INTEGER", nullable: false),
+                    Social = table.Column<int>(type: "INTEGER", nullable: false),
+                    Happiness = table.Column<int>(type: "INTEGER", nullable: false),
+                    Safety = table.Column<int>(type: "INTEGER", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
+                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UniversityId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UniversityRatings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UniversityRatings_Universities_UniversityId",
+                        column: x => x.UniversityId,
+                        principalTable: "Universities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseRatings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Description = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
                     Quality = table.Column<int>(type: "INTEGER", nullable: false),
                     Difficulty = table.Column<int>(type: "INTEGER", nullable: false),
                     TakeAgain = table.Column<bool>(type: "INTEGER", nullable: false),
@@ -64,9 +95,9 @@ namespace RateMyClass.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ratings", x => x.Id);
+                    table.PrimaryKey("PK_CourseRatings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ratings_Courses_CourseId",
+                        name: "FK_CourseRatings_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
@@ -74,21 +105,29 @@ namespace RateMyClass.API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_CourseRatings_CourseId",
+                table: "CourseRatings",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Courses_UniversityId",
                 table: "Courses",
                 column: "UniversityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ratings_CourseId",
-                table: "Ratings",
-                column: "CourseId");
+                name: "IX_UniversityRatings_UniversityId",
+                table: "UniversityRatings",
+                column: "UniversityId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Ratings");
+                name: "CourseRatings");
+
+            migrationBuilder.DropTable(
+                name: "UniversityRatings");
 
             migrationBuilder.DropTable(
                 name: "Courses");

@@ -11,18 +11,18 @@ namespace RateMyClass.API.Controllers
 {
     [Route("api/universities/{universityId}/courses/{courseId}/ratings")]
     [ApiController]
-    public class RatingsController : ControllerBase
+    public class CourseRatingsController : ControllerBase
     {
         private readonly IUniversityInfoRepository _universityInfoRepository;
         private readonly ICourseInfoRepository _courseInfoRepository;
-        private readonly IRatingInfoRepository _ratingInfoRepository;
+        private readonly ICourseRatingInfoRepository _ratingInfoRepository;
         private readonly IMapper _mapper;
 
-        public RatingsController(IUniversityInfoRepository universityInfoRepository, ICourseInfoRepository courseInfoRepository, IRatingInfoRepository ratingInfoRepository, IMapper mapper)
+        public CourseRatingsController(IUniversityInfoRepository universityInfoRepository, ICourseInfoRepository courseInfoRepository, ICourseRatingInfoRepository ratingInfoRepository, IMapper mapper)
         {
             _universityInfoRepository = universityInfoRepository ??
                 throw new ArgumentException(nameof(universityInfoRepository));
-            _courseInfoRepository = courseInfoRepository ?? 
+            _courseInfoRepository = courseInfoRepository ??
                 throw new ArgumentException(nameof(courseInfoRepository));
             _ratingInfoRepository = ratingInfoRepository ??
                 throw new AbandonedMutexException(nameof(ratingInfoRepository));
@@ -30,8 +30,8 @@ namespace RateMyClass.API.Controllers
                 throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet(Name = "GetRatings")]
-        public async Task<IActionResult> GetRatings(int universityId, int courseId, [FromQuery] int amount = 10)
+        [HttpGet(Name = "GetCourseRatings")]
+        public async Task<IActionResult> GetCourseRatings(int universityId, int courseId, [FromQuery] int amount = 10)
         {
             if (universityId < 1 || courseId < 1 || amount < 1)
             {
@@ -45,14 +45,14 @@ namespace RateMyClass.API.Controllers
                 return NotFound();
             }
 
-            IEnumerable<Rating> ratings = await _ratingInfoRepository.GetRatingsForCourse(courseId);
+            IEnumerable<CourseRating> ratings = await _ratingInfoRepository.GetRatingsForCourse(courseId);
 
-            return Ok(_mapper.Map<IEnumerable<RatingDto>>(ratings));
+            return Ok(_mapper.Map<IEnumerable<CourseRatingDto>>(ratings));
         }
 
 
-        [HttpGet("{ratingId}", Name = "GetRatingById")]
-        public async Task<IActionResult> GetRatingById(int universityId, int courseId, int ratingId)
+        [HttpGet("{ratingId}", Name = "GetCourseRatingById")]
+        public async Task<IActionResult> GetCourseRatingById(int universityId, int courseId, int ratingId)
         {
             if (courseId < 1 || universityId < 1 || ratingId < 1)
             {
@@ -66,18 +66,18 @@ namespace RateMyClass.API.Controllers
                 return NotFound();
             }
 
-            Rating? rating = await _ratingInfoRepository.GetRatingForCourseById(courseId, ratingId);
+            CourseRating? rating = await _ratingInfoRepository.GetRatingForCourseById(courseId, ratingId);
 
             if (rating is null)
             {
                 return NotFound();
             }
 
-            return Ok(_mapper.Map<RatingDto>(rating));
+            return Ok(_mapper.Map<CourseRatingDto>(rating));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateRating(int universityId, int courseId, [FromBody] CreateRatingDto rating)
+        public async Task<IActionResult> CreateCourseRating(int universityId, int courseId, [FromBody] CreateCourseRatingDto rating)
         {
             if (courseId < 1 || universityId < 1)
             {
@@ -91,7 +91,7 @@ namespace RateMyClass.API.Controllers
                 return NotFound();
             }
 
-            Rating finalRating = _mapper.Map<Rating>(rating);
+            CourseRating finalRating = _mapper.Map<CourseRating>(rating);
 
             bool returnBool = await _ratingInfoRepository.AddRatingForCourse(course, finalRating);
 
@@ -100,9 +100,9 @@ namespace RateMyClass.API.Controllers
                 return BadRequest();
             }
 
-            var createdRating = _mapper.Map<RatingDto>(finalRating);
+            var createdRating = _mapper.Map<CourseRatingDto>(finalRating);
 
-            return CreatedAtRoute("GetRatingById",
+            return CreatedAtRoute("GetCourseRatingById",
                 new
                 {
                     universityId = universityId,
@@ -113,7 +113,7 @@ namespace RateMyClass.API.Controllers
         }
 
         [HttpDelete("{ratingId}")]
-        public async Task<IActionResult> DeleteRating(int universityId, int courseId, int ratingId)
+        public async Task<IActionResult> DeleteCourseRating(int universityId, int courseId, int ratingId)
         {
             if (universityId < 1)
             {
@@ -138,7 +138,7 @@ namespace RateMyClass.API.Controllers
         }
 
         [HttpPut("{ratingId}")]
-        public async Task<IActionResult> PutRating(int universityId, int courseId, int ratingId, [FromBody] UpdateRatingdto rating)
+        public async Task<IActionResult> PutCourseRating(int universityId, int courseId, int ratingId, [FromBody] UpdateCourseRatingDto rating)
         {
             if (courseId < 1 || universityId < 1 || ratingId < 1)
             {
@@ -152,7 +152,7 @@ namespace RateMyClass.API.Controllers
                 return NotFound();
             }
 
-            Rating? currentRating = await _ratingInfoRepository.GetRatingForCourseById(courseId, ratingId);
+            CourseRating? currentRating = await _ratingInfoRepository.GetRatingForCourseById(courseId, ratingId);
 
             if (currentRating is null)
             {
@@ -163,11 +163,11 @@ namespace RateMyClass.API.Controllers
 
             await _ratingInfoRepository.SaveChanges();
 
-            return Ok(_mapper.Map<RatingDto>(currentRating));
+            return Ok(_mapper.Map<CourseRatingDto>(currentRating));
         }
 
         [HttpPatch("{ratingId}")]
-        public async Task<IActionResult> PatchRating(int universityId, int courseId, int ratingId, [FromBody] JsonPatchDocument<UpdateRatingdto> patchdoc)
+        public async Task<IActionResult> PatchCourseRating(int universityId, int courseId, int ratingId, [FromBody] JsonPatchDocument<UpdateCourseRatingDto> patchdoc)
         {
             if (courseId < 1 || universityId < 1 || ratingId < 1)
             {
@@ -181,14 +181,14 @@ namespace RateMyClass.API.Controllers
                 return NotFound();
             }
 
-            Rating? currentRating = await _ratingInfoRepository.GetRatingForCourseById(courseId, ratingId);
+            CourseRating? currentRating = await _ratingInfoRepository.GetRatingForCourseById(courseId, ratingId);
 
             if (currentRating is null)
             {
                 return NotFound();
             }
 
-            var ratingUpdate = _mapper.Map<UpdateRatingdto>(currentRating);
+            var ratingUpdate = _mapper.Map<UpdateCourseRatingDto>(currentRating);
             patchdoc.ApplyTo(ratingUpdate);
 
             TryValidateModel(ratingUpdate);
@@ -202,7 +202,7 @@ namespace RateMyClass.API.Controllers
 
             await _ratingInfoRepository.SaveChanges();
 
-            return Ok(_mapper.Map<RatingDto>(currentRating));
+            return Ok(_mapper.Map<CourseRatingDto>(currentRating));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace RateMyClass.API.Entities
         [Required]
         [MaxLength(10)]
         public string Name { get; set; } = string.Empty;
-        public ICollection<Rating> Ratings { get; set; } = new List<Rating>();
+        public ICollection<CourseRating> Ratings { get; set; } = new List<CourseRating>();
 
         [ForeignKey("UniversityId")]
         public University? University { get; set; }

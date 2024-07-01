@@ -2,10 +2,10 @@
 
 namespace RateMyClass.API.Models.Create
 {
-    public class CreateRatingDto
+    public class CreateCourseRatingDto
     {
         [Required]
-        [MaxLength(200)]
+        [MaxLength(500)]
         public string Description { get; set; } = string.Empty;
 
         [Required]

@@ -56,31 +56,31 @@ namespace RateMyClass.API.Controllers
                 return NotFound();
             }
 
-            var response = new GetMultipleResponse<UniversityWithoutCoursesDto>
+            var response = new GetMultipleResponse<UniversityWithoutListsDto>
             {
                 count = universitiesByName.Count(),
-                result = _mapper.Map<IEnumerable<UniversityWithoutCoursesDto>>(universitiesByName)
+                result = _mapper.Map<IEnumerable<UniversityWithoutListsDto>>(universitiesByName)
             };
 
             return Ok(response);
         }
 
         [HttpGet("{id}", Name = "GetUniversityById")]
-        public async Task<IActionResult> GetUniversityById([FromQuery] bool includeCourses, int id)
+        public async Task<IActionResult> GetUniversityById([FromQuery] bool includeLists, int id)
         {
             if (id < 1)
             {
                 return BadRequest();
             }
 
-            University? university = await _universityInfoRepository.GetUniversityById(id, includeCourses);
+            University? university = await _universityInfoRepository.GetUniversityById(id, includeLists);
 
             if (university is null)
             {
                 return NotFound();
             }
 
-            if (includeCourses)
+            if (includeLists)
             {
                 var includeCoursesResponse = new GetSingleResponse<UniversityDto>
                 {
@@ -89,9 +89,9 @@ namespace RateMyClass.API.Controllers
                 return Ok(includeCoursesResponse);
             }
 
-            var excludeCoursesResponse = new GetSingleResponse<UniversityWithoutCoursesDto>
+            var excludeCoursesResponse = new GetSingleResponse<UniversityWithoutListsDto>
             {
-                result = _mapper.Map<UniversityWithoutCoursesDto>(university)
+                result = _mapper.Map<UniversityWithoutListsDto>(university)
             };
             return Ok(excludeCoursesResponse);
         }

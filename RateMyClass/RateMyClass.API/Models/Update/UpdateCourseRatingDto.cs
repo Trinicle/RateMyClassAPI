@@ -2,9 +2,9 @@
 
 namespace RateMyClass.API.Models.Update
 {
-    public class UpdateRatingdto
+    public class UpdateCourseRatingDto
     {
-        [MaxLength(200)]
+        [MaxLength(500)]
         public string Description { get; set; } = string.Empty;
 
         [Range(1, 5)]

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using RateMyClass.API.DbContexts;
 using RateMyClass.API.Entities;
 using System.Text.RegularExpressions;
@@ -59,12 +58,13 @@ namespace RateMyClass.API.Services
                 .ToListAsync();
         }
 
-        public async Task<University?> GetUniversityById(int id, bool includeCourses)
+        public async Task<University?> GetUniversityById(int id, bool includeLists)
         {
-            if (includeCourses)
+            if (includeLists)
             {
                 return await _context.Universities
-                    .Include (c => c.Courses)
+                    .Include(r => r.Ratings)
+                    .Include(c => c.Courses)
                     .Where(u => u.Id == id)
                     .FirstOrDefaultAsync();
             }

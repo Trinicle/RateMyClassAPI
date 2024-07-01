@@ -1,34 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\",
+  "WorkspaceRootPath": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\personalprojects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\controllers\\universitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Migrations\\20240701021107_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RateMyClass.API\\Migrations\\20240701021107_initial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\controllers\\universityratingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\controllers\\universityratingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\models\\update\\updateuniversityratingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\models\\update\\updateuniversityratingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\models\\update\\updatecourseratingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\models\\update\\updatecourseratingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\models\\get\\universitydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\models\\get\\universitydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\models\\create\\createuniversityratingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\models\\create\\createuniversityratingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\models\\create\\createcourseratingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\models\\create\\createcourseratingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\entities\\courserating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\entities\\courserating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\entities\\universityrating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\entities\\universityrating.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\projects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\controllers\\universitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\controllers\\universitiescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\personalprojects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\personalprojects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\models\\response\\getsingleresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\models\\response\\getsingleresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\personalprojects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\services\\courseinforepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\services\\courseinforepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\personalprojects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\services\\icourseinforepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\services\\icourseinforepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\personalprojects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\services\\iratinginforepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\services\\iratinginforepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|c:\\personalprojects\\ratemyclassapi\\ratemyclass\\ratemyclass.api\\controllers\\ratingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{ABB80ABB-08CC-4DE9-B9E4-4F1E31560CCB}|RateMyClass.API\\RateMyClass.API.csproj|solutionrelative:ratemyclass.api\\controllers\\ratingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,15 +50,84 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:2:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UpdateUniversityRatingDto.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Update\\UpdateUniversityRatingDto.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Models\\Update\\UpdateUniversityRatingDto.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Update\\UpdateUniversityRatingDto.cs",
+              "RelativeToolTip": "RateMyClass.API\\Models\\Update\\UpdateUniversityRatingDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T02:07:37.295Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UpdateCourseRatingDto.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Update\\UpdateCourseRatingDto.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Models\\Update\\UpdateCourseRatingDto.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Update\\UpdateCourseRatingDto.cs",
+              "RelativeToolTip": "RateMyClass.API\\Models\\Update\\UpdateCourseRatingDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T02:07:33.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CreateUniversityRatingDto.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Create\\CreateUniversityRatingDto.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Models\\Create\\CreateUniversityRatingDto.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Create\\CreateUniversityRatingDto.cs",
+              "RelativeToolTip": "RateMyClass.API\\Models\\Create\\CreateUniversityRatingDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACUAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T02:07:16.552Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "Name": "ST:1016014016:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CreateCourseRatingDto.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Create\\CreateCourseRatingDto.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Models\\Create\\CreateCourseRatingDto.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Create\\CreateCourseRatingDto.cs",
+              "RelativeToolTip": "RateMyClass.API\\Models\\Create\\CreateCourseRatingDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T02:07:11.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CourseRating.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Entities\\CourseRating.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Entities\\CourseRating.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Entities\\CourseRating.cs",
+              "RelativeToolTip": "RateMyClass.API\\Entities\\CourseRating.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T02:07:03.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
             },
             {
               "$type": "Bookmark",
@@ -57,118 +138,75 @@
               "Name": "ST:1449176975:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:1:0:{fabf9319-47eb-497e-b8f6-d9f73fba5f55}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:696110298:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:1016014016:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:136:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Program.cs",
-              "RelativeDocumentMoniker": "RateMyClass.API\\Program.cs",
-              "ToolTip": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Program.cs",
-              "RelativeToolTip": "RateMyClass.API\\Program.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAACQAAAADAAAA",
+              "DocumentIndex": 8,
+              "Title": "UniversityRating.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Entities\\UniversityRating.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Entities\\UniversityRating.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Entities\\UniversityRating.cs",
+              "RelativeToolTip": "RateMyClass.API\\Entities\\UniversityRating.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T14:30:09.692Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GetSingleResponse.cs",
-              "DocumentMoniker": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Response\\GetSingleResponse.cs",
-              "RelativeDocumentMoniker": "RateMyClass.API\\Models\\Response\\GetSingleResponse.cs",
-              "ToolTip": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Response\\GetSingleResponse.cs",
-              "RelativeToolTip": "RateMyClass.API\\Models\\Response\\GetSingleResponse.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T14:09:55.173Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UniversitiesController.cs",
-              "DocumentMoniker": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Controllers\\UniversitiesController.cs",
-              "RelativeDocumentMoniker": "RateMyClass.API\\Controllers\\UniversitiesController.cs",
-              "ToolTip": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Controllers\\UniversitiesController.cs",
-              "RelativeToolTip": "RateMyClass.API\\Controllers\\UniversitiesController.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAQwCQAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T13:49:16.777Z",
+              "WhenOpened": "2024-06-29T22:03:55.886Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RatingsController.cs",
-              "DocumentMoniker": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Controllers\\RatingsController.cs",
-              "RelativeDocumentMoniker": "RateMyClass.API\\Controllers\\RatingsController.cs",
-              "ToolTip": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Controllers\\RatingsController.cs",
-              "RelativeToolTip": "RateMyClass.API\\Controllers\\RatingsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T13:37:19.241Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IRatingInfoRepository.cs",
-              "DocumentMoniker": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Services\\IRatingInfoRepository.cs",
-              "RelativeDocumentMoniker": "RateMyClass.API\\Services\\IRatingInfoRepository.cs",
-              "ToolTip": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Services\\IRatingInfoRepository.cs",
-              "RelativeToolTip": "RateMyClass.API\\Services\\IRatingInfoRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T20:32:43.858Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "ICourseInfoRepository.cs",
-              "DocumentMoniker": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Services\\ICourseInfoRepository.cs",
-              "RelativeDocumentMoniker": "RateMyClass.API\\Services\\ICourseInfoRepository.cs",
-              "ToolTip": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Services\\ICourseInfoRepository.cs",
-              "RelativeToolTip": "RateMyClass.API\\Services\\ICourseInfoRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Title": "UniversityDto.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Get\\UniversityDto.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Models\\Get\\UniversityDto.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Models\\Get\\UniversityDto.cs",
+              "RelativeToolTip": "RateMyClass.API\\Models\\Get\\UniversityDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAIAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T20:32:06.736Z"
+              "WhenOpened": "2024-06-29T21:52:51.983Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CourseInfoRepository.cs",
-              "DocumentMoniker": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Services\\CourseInfoRepository.cs",
-              "RelativeDocumentMoniker": "RateMyClass.API\\Services\\CourseInfoRepository.cs",
-              "ToolTip": "C:\\PersonalProjects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Services\\CourseInfoRepository.cs",
-              "RelativeToolTip": "RateMyClass.API\\Services\\CourseInfoRepository.cs",
-              "ViewState": "AQIAACMAAAAAAAAAAAAIwAYAAAABAAAA",
+              "DocumentIndex": 9,
+              "Title": "UniversitiesController.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Controllers\\UniversitiesController.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Controllers\\UniversitiesController.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Controllers\\UniversitiesController.cs",
+              "RelativeToolTip": "RateMyClass.API\\Controllers\\UniversitiesController.cs",
+              "ViewState": "AQIAACoAAAAAAAAAAAAowEUAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-24T18:06:59.015Z"
+              "WhenOpened": "2024-06-29T18:26:38.562Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20240701021107_initial.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Migrations\\20240701021107_initial.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Migrations\\20240701021107_initial.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Migrations\\20240701021107_initial.cs",
+              "RelativeToolTip": "RateMyClass.API\\Migrations\\20240701021107_initial.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T02:11:07.928Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UniversityRatingsController.cs",
+              "DocumentMoniker": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Controllers\\UniversityRatingsController.cs",
+              "RelativeDocumentMoniker": "RateMyClass.API\\Controllers\\UniversityRatingsController.cs",
+              "ToolTip": "C:\\Projects\\RateMyClassAPI\\RateMyClass\\RateMyClass.API\\Controllers\\UniversityRatingsController.cs",
+              "RelativeToolTip": "RateMyClass.API\\Controllers\\UniversityRatingsController.cs",
+              "ViewState": "AQIAADMAAAAAAAAAAAD4v2IAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T21:55:37.152Z",
+              "EditorCaption": ""
             }
           ]
         }

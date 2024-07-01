@@ -25,5 +25,6 @@ namespace RateMyClass.API.Entities
         public string Zip { get; set; } = string.Empty;
         public string Website { get; set; } = "NOT AVAILABLE";
         public ICollection<Course> Courses { get; set; } = new List<Course>();
+        public ICollection<UniversityRating> Ratings { get; set; } = new List<UniversityRating>();
     }
 }

@@ -4,15 +4,15 @@ using RateMyClass.API.Entities;
 
 namespace RateMyClass.API.Services
 {
-    public class RatingInfoRepository : IRatingInfoRepository
+    public class CourseRatingInfoRepository : ICourseRatingInfoRepository
     {
         private readonly UniversityInfoContext _context;
 
-        public RatingInfoRepository(UniversityInfoContext context)
+        public CourseRatingInfoRepository(UniversityInfoContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        public async Task<bool> AddRatingForCourse(Course course, Rating rating)
+        public async Task<bool> AddRatingForCourse(Course course, CourseRating rating)
         {
             course.Ratings.Add(rating);
 
@@ -37,23 +37,23 @@ namespace RateMyClass.API.Services
             return !await RatingExists(ratingId);
         }
 
-        public async Task<Rating?> GetRatingForCourseById(int courseId, int ratingId)
+        public async Task<CourseRating?> GetRatingForCourseById(int courseId, int ratingId)
         {
-            return await _context.Ratings
+            return await _context.CourseRatings
                 .Where(r => r.CourseId == courseId && r.Id == ratingId)
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Rating>> GetRatingsForCourse(int courseId)
+        public async Task<IEnumerable<CourseRating>> GetRatingsForCourse(int courseId)
         {
-            return await _context.Ratings
+            return await _context.CourseRatings
                 .Where(r => r.CourseId == courseId)
                 .ToListAsync();
         }
 
         public async Task<bool> RatingExists(int ratingId)
         {
-            var course = await _context.Ratings
+            var course = await _context.CourseRatings
                 .Where (r => r.Id == ratingId)
                 .FirstOrDefaultAsync();
 

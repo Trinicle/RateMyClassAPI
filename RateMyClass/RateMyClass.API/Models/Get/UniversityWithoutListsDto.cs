@@ -1,6 +1,6 @@
 ﻿namespace RateMyClass.API.Models.Get
 {
-    public class UniversityWithoutCoursesDto
+    public class UniversityWithoutListsDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;

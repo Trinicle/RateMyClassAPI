@@ -38,7 +38,7 @@ namespace RateMyClass.API.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("RateMyClass.API.Entities.Rating", b =>
+            modelBuilder.Entity("RateMyClass.API.Entities.CourseRating", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace RateMyClass.API.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(200)
+                        .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Difficulty")
@@ -68,7 +68,7 @@ namespace RateMyClass.API.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Ratings");
+                    b.ToTable("CourseRatings");
                 });
 
             modelBuilder.Entity("RateMyClass.API.Entities.University", b =>
@@ -111,6 +111,60 @@ namespace RateMyClass.API.Migrations
                     b.ToTable("Universities");
                 });
 
+            modelBuilder.Entity("RateMyClass.API.Entities.UniversityRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Clubs")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Facilities")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Food")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Happiness")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Internet")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Location")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Opportunities")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Quality")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Safety")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Social")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UniversityId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UniversityId");
+
+                    b.ToTable("UniversityRatings");
+                });
+
             modelBuilder.Entity("RateMyClass.API.Entities.Course", b =>
                 {
                     b.HasOne("RateMyClass.API.Entities.University", "University")
@@ -122,7 +176,7 @@ namespace RateMyClass.API.Migrations
                     b.Navigation("University");
                 });
 
-            modelBuilder.Entity("RateMyClass.API.Entities.Rating", b =>
+            modelBuilder.Entity("RateMyClass.API.Entities.CourseRating", b =>
                 {
                     b.HasOne("RateMyClass.API.Entities.Course", "Course")
                         .WithMany("Ratings")
@@ -133,6 +187,17 @@ namespace RateMyClass.API.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("RateMyClass.API.Entities.UniversityRating", b =>
+                {
+                    b.HasOne("RateMyClass.API.Entities.University", "University")
+                        .WithMany("Ratings")
+                        .HasForeignKey("UniversityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("University");
+                });
+
             modelBuilder.Entity("RateMyClass.API.Entities.Course", b =>
                 {
                     b.Navigation("Ratings");
@@ -141,6 +206,8 @@ namespace RateMyClass.API.Migrations
             modelBuilder.Entity("RateMyClass.API.Entities.University", b =>
                 {
                     b.Navigation("Courses");
+
+                    b.Navigation("Ratings");
                 });
 #pragma warning restore 612, 618
         }

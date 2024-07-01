@@ -1,6 +1,4 @@
-﻿using RateMyClass.API.Entities;
-
-namespace RateMyClass.API.Models.Get
+﻿namespace RateMyClass.API.Models.Get
 {
     public class UniversityDto
     {
@@ -20,5 +18,15 @@ namespace RateMyClass.API.Models.Get
         }
 
         public ICollection<CourseWithoutRatingsDto> Courses { get; set; } = new List<CourseWithoutRatingsDto>();
+
+        public int NumberOfRatings
+        {
+            get
+            {
+                return Ratings.Count;
+            }
+        }
+
+        public ICollection<UniversityRatingDto> Ratings { get; set; } = new List<UniversityRatingDto>();
     }
 }
