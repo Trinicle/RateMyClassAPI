@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using RateMyClass.API.Entities;
 using RateMyClass.API.Models.Create;
 using RateMyClass.API.Models.Get;
-using RateMyClass.API.Models.Response;
 using RateMyClass.API.Models.Update;
 using RateMyClass.API.Services;
 
@@ -30,7 +29,7 @@ namespace RateMyClass.API.Controllers
             [FromQuery] string? name,
             [FromQuery] int amount = 10)
         {
-            if(amount < 1)
+            if (amount < 1)
             {
                 return BadRequest();
             }
@@ -39,34 +38,22 @@ namespace RateMyClass.API.Controllers
             {
                 IEnumerable<University> universities = await _universityInfoRepository.GetUniversities(amount);
 
-                var noNameResponse = new GetMultipleResponse<University>
-                {
-                    count = universities.Count(),
-                    result = _mapper.Map<IEnumerable<University>>(universities)
-                };
 
-                return Ok(noNameResponse);
+                return Ok(_mapper.Map<IEnumerable<University>>(universities));
             }
 
             IEnumerable<University> universitiesByName = await _universityInfoRepository.GetUniversitiesByName(name, amount);
-
 
             if (!universitiesByName.Any())
             {
                 return NotFound();
             }
 
-            var response = new GetMultipleResponse<UniversityWithoutListsDto>
-            {
-                count = universitiesByName.Count(),
-                result = _mapper.Map<IEnumerable<UniversityWithoutListsDto>>(universitiesByName)
-            };
-
-            return Ok(response);
+            return Ok(_mapper.Map<IEnumerable<UniversityWithoutListsDto>>(universitiesByName));
         }
 
         [HttpGet("{id}", Name = "GetUniversityById")]
-        public async Task<IActionResult> GetUniversityById([FromQuery] bool includeLists, int id)
+        public async Task<IActionResult> GetUniversityById(int id, [FromQuery] bool includeLists = false)
         {
             if (id < 1)
             {
@@ -82,18 +69,12 @@ namespace RateMyClass.API.Controllers
 
             if (includeLists)
             {
-                var includeCoursesResponse = new GetSingleResponse<UniversityDto>
-                {
-                    result = _mapper.Map<UniversityDto>(university)
-                };
-                return Ok(includeCoursesResponse);
+
+                return Ok(_mapper.Map<UniversityDto>(university));
             }
 
-            var excludeCoursesResponse = new GetSingleResponse<UniversityWithoutListsDto>
-            {
-                result = _mapper.Map<UniversityWithoutListsDto>(university)
-            };
-            return Ok(excludeCoursesResponse);
+
+            return Ok(_mapper.Map<UniversityWithoutListsDto>(university));
         }
 
         [HttpPost]
@@ -150,7 +131,7 @@ namespace RateMyClass.API.Controllers
 
             if (currentUniversity is null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             _mapper.Map(university, currentUniversity);
