@@ -31,21 +31,21 @@ namespace RateMyClass.API.Controllers
         }
 
         [HttpGet(Name = "GetCourseRatings")]
-        public async Task<IActionResult> GetCourseRatings(int universityId, int courseId, [FromQuery] int amount = 10)
+        public async Task<IActionResult> GetCourseRatings(int universityId, int courseId, [FromQuery] int? amount)
         {
             if (universityId < 1 || courseId < 1 || amount < 1)
             {
                 return BadRequest();
             }
 
-            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId);
+            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId, false);
 
             if (course is null)
             {
                 return NotFound();
             }
 
-            IEnumerable<CourseRating> ratings = await _ratingInfoRepository.GetRatingsForCourse(courseId);
+            IEnumerable<CourseRating> ratings = await _ratingInfoRepository.GetRatingsForCourse(courseId, amount);
 
             return Ok(_mapper.Map<IEnumerable<CourseRatingDto>>(ratings));
         }
@@ -59,7 +59,7 @@ namespace RateMyClass.API.Controllers
                 return BadRequest();
             }
 
-            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId);
+            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId, false);
 
             if (course is null)
             {
@@ -84,7 +84,7 @@ namespace RateMyClass.API.Controllers
                 return BadRequest();
             }
 
-            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId);
+            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId, false);
 
             if (course is null)
             {
@@ -120,7 +120,7 @@ namespace RateMyClass.API.Controllers
                 return BadRequest();
             }
 
-            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId);
+            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId, false);
 
             if (course is null)
             {
@@ -145,7 +145,7 @@ namespace RateMyClass.API.Controllers
                 return BadRequest();
             }
 
-            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId);
+            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId, false);
 
             if (course is null)
             {
@@ -174,7 +174,7 @@ namespace RateMyClass.API.Controllers
                 return BadRequest();
             }
 
-            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId);
+            Course? course = await _courseInfoRepository.GetCourseForUniversityById(universityId, courseId, false);
 
             if (course is null)
             {

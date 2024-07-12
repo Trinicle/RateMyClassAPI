@@ -14,6 +14,6 @@ namespace RateMyClass.API.Models.Get
             }
         }
 
-        public ICollection<CourseRating> Ratings { get; set; } = new List<CourseRating>();
+        public ICollection<CourseRatingDto> Ratings { get; set; } = new List<CourseRatingDto>();
     }
 }

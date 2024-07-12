@@ -44,11 +44,17 @@ namespace RateMyClass.API.Services
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<CourseRating>> GetRatingsForCourse(int courseId)
+        public async Task<IEnumerable<CourseRating>> GetRatingsForCourse(int courseId, int? amount)
         {
-            return await _context.CourseRatings
-                .Where(r => r.CourseId == courseId)
-                .ToListAsync();
+            var query = _context.CourseRatings
+                 .Where(r => r.CourseId == courseId);
+
+            if (amount.HasValue)
+            {
+                query = query.Take(amount.Value);
+            }
+
+            return await query.ToListAsync();
         }
 
         public async Task<bool> RatingExists(int ratingId)
